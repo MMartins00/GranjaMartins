@@ -21,7 +21,31 @@ if (cantidadMaple <= 0) { alert("tienes que ingresar una cantidad valida"); }
 
 else if (cantidadMaple >= 12) { alert("tiene un descuento de 10%"); }
 let descuento = parseInt(prompt("ingrese el descuento (si corresponde)"))
-entrada = prompt("desea continuar comprando?")} while (entrada == "No")
+entrada = prompt("desea continuar comprando?")} while (entrada === "No")
 
 let preciofinal = calcularPrecio(precioMaple + cantidadMaple + descuento);
 alert("el precio final de su compra es $" + preciofinal);
+
+
+class Huevos {
+    constructor(Color, precio) {
+        this.Color = Color;
+        this.precio = precio;
+        this.cantidad = 200;
+    }
+    Vender() {
+        if(this.cantidad > 0) {
+            this.cantidad --;
+        }
+    }else { console.log("No hay mas stock")}
+}
+
+const colorados = new huevos(colorados, 750);
+const blancos = new huevos(blancos, 700);
+
+const stockhuevos = [Colorados, Blancos];
+console.log(stockhuevos);
+
+for(let producto of stockhuevos) {
+    console.log(producto)
+}
