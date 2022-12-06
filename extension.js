@@ -37,10 +37,10 @@ class Huevos {
         if(this.cantidad > 0) {
             this.cantidad --;
         }
-    }else {
+    else {
         console.log("No hay mas stock");
     }
-}
+}}
 
 const colorados = new huevos(colorados, 750);
 const blancos = new huevos(blancos, 700);
