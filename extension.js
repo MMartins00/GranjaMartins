@@ -1,10 +1,10 @@
 class producto {
-    constructor(nombre, precio, id) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.id = id;
-        this.cantidad = 1;
-    }
+  constructor(nombre, precio, id) {
+    this.nombre = nombre;
+    this.precio = precio;
+    this.id = id;
+    this.cantidad = 1;
+  }
 
 }
 
@@ -15,15 +15,12 @@ const blancon1 = new producto("blanco n 1", 700, 4);
 const blancon2 = new producto("blanco n 2", 600, 5);
 const blancosuper = new producto("blanco super", 800, 6);
 
-//Declaramos el carrito:
-
-let carrito= [];
 
 
 const arrayproductos = [coloradon1, coloradon2, coloradosuper, blancon1, blancon2, blancosuper];
 const productos = document.getElementById("productos");
 const verproductos = () => {
-arrayproductos.forEach(producto => {
+  arrayproductos.forEach(producto => {
     const div1 = document.createElement("div");
     div1.classList.add("col-xl-3", "col-md-6", "col-sm-12");
     div1.innerHTML = `<div>
@@ -37,4 +34,7 @@ arrayproductos.forEach(producto => {
       
  `
     productos.appendChild(div1);
-})}
+  })
+}
+
+verproductos();
