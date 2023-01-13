@@ -16,25 +16,38 @@ const blancon2 = new producto("blanco n 2", 600, 5);
 const blancosuper = new producto("blanco super", 800, 6);
 
 
-
 const arrayproductos = [coloradon1, coloradon2, coloradosuper, blancon1, blancon2, blancosuper];
-const productos = document.getElementById("productos");
+const productos = document.querySelector(".productos");
 const verproductos = () => {
   arrayproductos.forEach(producto => {
     const div1 = document.createElement("div");
     div1.classList.add("col-xl-3", "col-md-6", "col-sm-12");
-    div1.innerHTML = `<div>
+    div1.innerHTML = `<div class= "contenedorproductos">
     <img src="..." class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title"> ${producto.nombre}</h5>
       <p class="card-text"> precio: ${producto.precio}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <a href="#" class="btn btncolor" id = "botonagregar${producto.id}">Agregar al carrito</a>
     </div>
   </div>
       
  `
     productos.appendChild(div1);
+
+    const botonagregar = document.getElementById(`botonagregar${producto.id}`);
+    botonagregar.addEventListener("click", () => {
+    agregaralcarrillo(producto.id)
+})
   })
 }
-
+const agregaralcarrillo = (id) => {
+  const productoencarrillo = carrito.find(producto => producto.id === id);
+  if (productoencarrillo) {
+      productoencarrillo.cantidad++;
+  } else {
+      const producto = arrayproductos.find(producto => producto.id === id);
+      carrito.push(producto);
+      console.log(carrito);
+  }
+}
 verproductos();
