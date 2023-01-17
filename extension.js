@@ -1,23 +1,24 @@
 class producto {
-  constructor(nombre, precio, id) {
+  constructor(nombre, precio, id, img) {
     this.nombre = nombre;
     this.precio = precio;
     this.id = id;
+    this.img = img;
     this.cantidad = 1;
   }
 
 }
 
-const coloradon1 = new producto("colorado n 1", 750, 1);
+const coloradon1 = new producto("colorado n 1", 750, 1, "imagenes/");
 const coloradon2 = new producto("colorado n 2", 650, 2);
 const coloradosuper = new producto("colorado super", 850, 3);
 const blancon1 = new producto("blanco n 1", 700, 4);
 const blancon2 = new producto("blanco n 2", 600, 5);
 const blancosuper = new producto("blanco super", 800, 6);
 
-
+let carrito = []
 const arrayproductos = [coloradon1, coloradon2, coloradosuper, blancon1, blancon2, blancosuper];
-const productos = document.querySelector(".productos");
+const productos = document.getElementById("productos");
 const verproductos = () => {
   arrayproductos.forEach(producto => {
     const div1 = document.createElement("div");
@@ -51,3 +52,31 @@ const agregaralcarrillo = (id) => {
   }
 }
 verproductos();
+
+
+
+const contenedorcarrito = document.getElementById("contenedorcarrito");
+const btncarrito = document.getElementById("vercarrito");
+
+btncarrito.addEventListener("click", ()=> {
+  vercarrito();
+})
+const vercarrito = () => {
+    carrito.forEach(producto => {
+        const cardcarrito = document.createElement("div");
+        cardcarrito.classList.add("col-xl-3", "col-md-6", "col-ms-12");
+
+        cardcarrito.innerHTML = `<div class= "contenedorcarrito">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"> ${producto.nombre}</h5>
+          <p class="card-text"> precio: ${producto.precio}</p>
+          <p> cantidad: ${producto.cantidad}</p>
+          <a href="#" class="btn btncolor" id = "eliminar${producto.id}">eliminar producto</a>
+        </div>
+      </div>
+          
+     `
+     contenedorcarrito.appendChild(cardcarrito);
+    })}
+    
