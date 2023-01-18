@@ -28,7 +28,8 @@ const verproductos = () => {
     <div class="card-body">
       <h5 class="card-title"> ${producto.nombre}</h5>
       <p class="card-text"> precio: ${producto.precio}</p>
-      <a href="#" class="btn btncolor" id = "botonagregar${producto.id}">Agregar al carrito</a>
+       
+      <button class="btn btncolor" id = "botonagregar${producto.id}">Agregar al carrito </button>
     </div>
   </div>
       
@@ -62,6 +63,7 @@ btncarrito.addEventListener("click", ()=> {
   vercarrito();
 })
 const vercarrito = () => {
+  contenedorcarrito.innerHTML = "";
     carrito.forEach(producto => {
         const cardcarrito = document.createElement("div");
         cardcarrito.classList.add("col-xl-3", "col-md-6", "col-ms-12");
@@ -72,11 +74,25 @@ const vercarrito = () => {
           <h5 class="card-title"> ${producto.nombre}</h5>
           <p class="card-text"> precio: ${producto.precio}</p>
           <p> cantidad: ${producto.cantidad}</p>
-          <a href="#" class="btn btncolor" id = "eliminar${producto.id}">eliminar producto</a>
+          <button class="btn btncolor" id = "eliminar${producto.id}">eliminar producto</button>
         </div>
       </div>
           
      `
      contenedorcarrito.appendChild(cardcarrito);
+
+    const btn = document.getElementById(`eliminar${producto.id}`);
+    btn.addEventListener("click", () => {
+      eliminarproducto(producto.id);
+    })
+
     })}
     
+    const eliminarproducto = (id) =>{
+      const productoencarrillo = carrito.find(producto => producto.id === id);
+      const inc = carrito.indexOf(productoencarrillo);
+      carrito.splice(inc, 1);
+       vercarrito(); 
+    }
+
+   
