@@ -17,6 +17,11 @@ const blancon2 = new producto("blanco n 2", 600, 5);
 const blancosuper = new producto("blanco super", 800, 6);
 
 let carrito = []
+
+if(localStorage.getItem("carrito")) {
+  carrito = JSON.parse(localStorage.getItem("carrito"));
+}
+
 const arrayproductos = [coloradon1, coloradon2, coloradosuper, blancon1, blancon2, blancosuper];
 const productos = document.getElementById("productos");
 const verproductos = () => {
@@ -49,8 +54,9 @@ const agregaralcarrillo = (id) => {
   } else {
       const producto = arrayproductos.find(producto => producto.id === id);
       carrito.push(producto);
-      console.log(carrito);
-  }
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+  calcular();
 }
 verproductos();
 
@@ -93,6 +99,25 @@ const vercarrito = () => {
       const inc = carrito.indexOf(productoencarrillo);
       carrito.splice(inc, 1);
        vercarrito(); 
+       localStorage.setItem("carrito", JSON.stringify(carrito));
     }
 
-   
+   const vaciarcarrillo = document.getElementById("vaciarcarrillo");
+   vaciarcarrillo.addEventListener("click", () =>{
+    vaciarcarrito();
+   })
+   const vaciarcarrito = () => {
+   carrito = [];
+   vercarrito();
+   localStorage.clear();
+   }
+
+   //calculamos el total
+   const totalcompra = document.getElementById("total");
+   const calcular = () => {
+    let preciototal = 0;
+    carrito.forEach(producto => {
+      preciototal += producto.precio * producto.cantidad;
+    }); 
+    totalcompra.innerHTML = `total: ${preciototal}`; 
+  }
