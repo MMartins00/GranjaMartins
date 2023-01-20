@@ -44,6 +44,12 @@ const verproductos = () => {
     const botonagregar = document.getElementById(`botonagregar${producto.id}`);
     botonagregar.addEventListener("click", () => {
     agregaralcarrillo(producto.id)
+    swal({
+      title: "Producto agregado",
+      text: "El producto fue agregado al carrito",
+      icon: "success",
+      button: "Ok",
+    });
 })
   })
 }
@@ -98,13 +104,25 @@ const vercarrito = () => {
       const productoencarrillo = carrito.find(producto => producto.id === id);
       const inc = carrito.indexOf(productoencarrillo);
       carrito.splice(inc, 1);
-       vercarrito(); 
+      swal({
+        title: "Producto eliminado",
+        text: "El producto fue eliminado del carrito con exito",
+        icon: "success",
+        button: "Ok",
+      });
+      vercarrito(); 
        localStorage.setItem("carrito", JSON.stringify(carrito));
     }
 
    const vaciarcarrillo = document.getElementById("vaciarcarrillo");
    vaciarcarrillo.addEventListener("click", () =>{
     vaciarcarrito();
+    swal({
+      title: "Carrito vacio",
+      text: "Se han eliminado todos los productos del carrito",
+      icon: "info",
+      button: "Ok",
+    });
    })
    const vaciarcarrito = () => {
    carrito = [];
@@ -120,8 +138,11 @@ const vercarrito = () => {
     carrito.forEach(producto => {
       preciototal += producto.precio * producto.cantidad;
     }); 
-    totalcompra.innerHTML = `total: ${preciototal}`; 
+    totalcompra.innerHTML = `total: ${preciototal}`;
   }
 
+  
+  
+  
 
   
