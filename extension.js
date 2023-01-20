@@ -9,12 +9,12 @@ class producto {
 
 }
 
-const coloradon1 = new producto("colorado n 1", 750, 1, "imagenes/");
-const coloradon2 = new producto("colorado n 2", 650, 2);
-const coloradosuper = new producto("colorado super", 850, 3);
-const blancon1 = new producto("blanco n 1", 700, 4);
-const blancon2 = new producto("blanco n 2", 600, 5);
-const blancosuper = new producto("blanco super", 800, 6);
+const coloradon1 = new producto("Colorado n 1", 750, 1, "imagenes/n1.jpeg");
+const coloradon2 = new producto("Colorado n 2", 650, 2, "imagenes/n2.jpeg");
+const coloradosuper = new producto("Colorado super", 850, 3, "imagenes/super.jpeg");
+const blancon1 = new producto("Blanco n 1", 700, 4, "imagenes/n1b.jpeg");
+const blancon2 = new producto("Blanco n 2", 600, 5, "imagenes/n2b.jpeg");
+const blancosuper = new producto("Blanco super", 800, 6, "imagenes/superb.jpeg");
 
 let carrito = []
 
@@ -29,12 +29,12 @@ const verproductos = () => {
     const div1 = document.createElement("div");
     div1.classList.add("col-xl-3", "col-md-6", "col-sm-12");
     div1.innerHTML = `<div class= "contenedorproductos">
-    <img src="..." class="card-img-top" alt="...">
+    <img src="${producto.img}" class="card-img-top fotos" alt="...">
     <div class="card-body">
       <h5 class="card-title"> ${producto.nombre}</h5>
-      <p class="card-text"> precio: ${producto.precio}</p>
+      <p class="card-text"> Precio: ${producto.precio}</p>
        
-      <button class="btn btncolor" id = "botonagregar${producto.id}">Agregar al carrito </button>
+      <button class="btn btncolor" id = "botonagregar${producto.id}">Agregar </button>
     </div>
   </div>
       
@@ -80,7 +80,7 @@ const vercarrito = () => {
           <h5 class="card-title"> ${producto.nombre}</h5>
           <p class="card-text"> precio: ${producto.precio}</p>
           <p> cantidad: ${producto.cantidad}</p>
-          <button class="btn btncolor" id = "eliminar${producto.id}">eliminar producto</button>
+          <button class="btn btneliminar" id = "eliminar${producto.id}">eliminar producto</button>
         </div>
       </div>
           
@@ -113,11 +113,15 @@ const vercarrito = () => {
    }
 
    //calculamos el total
+
    const totalcompra = document.getElementById("total");
-   const calcular = () => {
+   let calcular = () => {
     let preciototal = 0;
     carrito.forEach(producto => {
       preciototal += producto.precio * producto.cantidad;
     }); 
     totalcompra.innerHTML = `total: ${preciototal}`; 
   }
+
+
+  
